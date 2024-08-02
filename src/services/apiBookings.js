@@ -88,9 +88,11 @@ export async function getStaysTodayActivity() {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, guests(fullName, notionality, countryFlag)")
-    .or(
-      `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`
-    )
+    .or(`and(status.eq.unconfirmed),and(status.eq.checked-in.)`)
+    //  THAT IS JUST FOR TEST IF WE WANT TO BE REAL ACTIVE THIS
+    //.or(
+    //   `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`
+    // )
     .order("created_at");
 
   if (error) {
