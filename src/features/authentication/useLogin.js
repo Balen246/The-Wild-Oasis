@@ -10,8 +10,12 @@ export function useLogin() {
   const { mutate: login, isPending: isLoading } = useMutation({
     mutationFn: ({ email, password }) => loginUser({ email, password }),
     onSuccess: (user) => {
-      queryClient.setQueryData(["user", user ? user.user : ""]);
-      navigate("/dashboard", { replace: true });
+      if (user && user.user) {
+        queryClient.setQueryData(["user"], user.user); // Simplified key ["user"]
+        navigate("/dashboard", { replace: true });
+      } else {
+        toast.error("Failed to retrieve user data.");
+      }
     },
     onError: () => toast.error("Provided email or password is incorrect"),
   });
