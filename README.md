@@ -1,4 +1,4 @@
-# Complete project with React and Supabase
+# Complete project with React and Supabase backend
 
 React project with ReactQuery , ReactRouter , StyledComponent , Supabase
 
